@@ -10,7 +10,7 @@ function App() {
 
 
   useEffect(() => {
-    fetch("http://localhost:4000/jobs")
+    fetch('/api/jobs')
       .then((res) => res.json())
       .then((data) => setJobs(data))
       .catch((err) => console.error("Failed to load jobs:", err));
@@ -19,7 +19,7 @@ function App() {
  
   async function handleAddJob(newJob: JobEntry) {
     try {
-      const res = await fetch("http://localhost:4000/jobs", {
+      const res = await fetch('/api/jobs', {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newJob),
@@ -49,7 +49,7 @@ function App() {
                 </button>
                 <button onClick={async ()=>{
                   try{
-                    await fetch(`http://localhost:4000/jobs/${jobToDelete.id}`,{
+                    await fetch(`/api/jobs/${jobToDelete.id}`,{
                       method:"DELETE"
                     })
                     setJobs((prev)=>prev.filter((job)=>job.id !== jobToDelete.id))
